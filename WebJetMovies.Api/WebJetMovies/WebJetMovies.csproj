@@ -2,19 +2,36 @@
 
   <PropertyGroup>
 	<TargetFramework>net5.0</TargetFramework>
-	  <Authors>Panviva Pty Ltd</Authors>
-	  <Description>Panviva's microservice logging package for configuring Serilog and adding request info to the log context</Description>
 	<RootNamespace>WebJetMovies</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\static\css\2.0e3b5cdc.chunk.css.map" />
+    <None Include="wwwroot\static\css\2.8eaf1586.chunk.css.map" />
     <None Include="wwwroot\static\css\main.ab7136cd.chunk.css.map" />
+    <None Include="wwwroot\static\css\main.d70d3866.chunk.css.map" />
     <None Include="wwwroot\static\js\2.3f3177f9.chunk.js" />
     <None Include="wwwroot\static\js\2.3f3177f9.chunk.js.map" />
+    <None Include="wwwroot\static\js\2.47d9bd77.chunk.js" />
+    <None Include="wwwroot\static\js\2.47d9bd77.chunk.js.map" />
+    <None Include="wwwroot\static\js\2.5019c101.chunk.js" />
+    <None Include="wwwroot\static\js\2.5019c101.chunk.js.map" />
+    <None Include="wwwroot\static\js\2.6e52e76f.chunk.js" />
+    <None Include="wwwroot\static\js\2.6e52e76f.chunk.js.map" />
     <None Include="wwwroot\static\js\3.1c980452.chunk.js" />
     <None Include="wwwroot\static\js\3.1c980452.chunk.js.map" />
+    <None Include="wwwroot\static\js\3.90a11a71.chunk.js" />
+    <None Include="wwwroot\static\js\3.90a11a71.chunk.js.map" />
+    <None Include="wwwroot\static\js\main.617a68e7.chunk.js" />
+    <None Include="wwwroot\static\js\main.617a68e7.chunk.js.map" />
+    <None Include="wwwroot\static\js\main.a55e0542.chunk.js" />
+    <None Include="wwwroot\static\js\main.a55e0542.chunk.js.map" />
+    <None Include="wwwroot\static\js\main.a70e930b.chunk.js" />
+    <None Include="wwwroot\static\js\main.a70e930b.chunk.js.map" />
     <None Include="wwwroot\static\js\main.d26f7007.chunk.js" />
     <None Include="wwwroot\static\js\main.d26f7007.chunk.js.map" />
+    <None Include="wwwroot\static\js\runtime-main.0b68f701.js" />
+    <None Include="wwwroot\static\js\runtime-main.0b68f701.js.map" />
     <None Include="wwwroot\static\js\runtime-main.2ac35362.js" />
     <None Include="wwwroot\static\js\runtime-main.2ac35362.js.map" />
     <None Include="wwwroot\static\media\logo.103b5fa1.svg" />

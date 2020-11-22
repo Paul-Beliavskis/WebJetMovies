@@ -28,7 +28,7 @@ namespace WebJetMovies.Api.Controllers
         public async Task<IActionResult> Get(CancellationToken cancelationToken = default)
         {
             //When the error occures it is picked up by the exception handling middleware and a bad request will be returned
-            var response = await _mediator.Send(new GetCheapestMoviesQuery());
+            var response = await _mediator.Send(new GetCheapestMoviesQuery(), cancelationToken);
 
             return Ok(response);
         }

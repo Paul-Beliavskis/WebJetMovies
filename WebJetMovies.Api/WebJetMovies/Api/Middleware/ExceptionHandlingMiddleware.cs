@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WebJetMovies.Api.ViewModels;
 
-namespace Panviva.Services.Authorization.Middleware
+namespace WebJetMovies.Api.Middleware
 {
     public class ErrorHandlingMiddleware
     {

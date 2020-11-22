@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Panviva.Services.Authorization.Middleware;
 using WebJetMovies.Api.Middleware;
 
 namespace WebJetMovies.Api.Extensions
