@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Reflection;
 using FluentValidation;
 using MediatR;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -100,7 +102,10 @@ namespace WebJetMovies.Api
             //This will ensure that if no route is found we need to return the UI page
             app.UseRouteHandlerMiddleware();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Api/wwwroot"))
+            });
 
             app.UseHttpsRedirection();
 
