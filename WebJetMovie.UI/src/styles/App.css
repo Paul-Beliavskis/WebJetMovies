@@ -1,0 +1,23 @@
+.App {
+  display: flex;
+  flex:1;
+  height:100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+#root{
+  height:100%;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
