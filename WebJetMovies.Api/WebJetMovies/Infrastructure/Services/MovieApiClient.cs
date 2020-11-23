@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
@@ -14,7 +13,7 @@ namespace WebJetMovies.Infrastructure.Services
 {
     public class MovieApiClient : IMovieApiClient
     {
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientWrapper _httpClientWrapper;
 
         private readonly MovieApiUris _movieApiUris;
 
@@ -22,12 +21,12 @@ namespace WebJetMovies.Infrastructure.Services
 
         private readonly ILogger _logger;
 
-        public MovieApiClient(HttpClient httpClient,
+        public MovieApiClient(IHttpClientWrapper httpClientWrapper,
         IOptions<MovieApiUris> movieApiUrisOptions,
         IOptions<ApiRequestDetails> apiRequestDetailsOptions,
         ILogger logger)
         {
-            _httpClient = httpClient;
+            _httpClientWrapper = httpClientWrapper;
 
             _movieApiUris = movieApiUrisOptions.Value;
 
@@ -40,7 +39,7 @@ namespace WebJetMovies.Infrastructure.Services
         {
             try
             {
-                var data = await _httpClient.GetStringAsync(_movieApiUris.GetFilmworldMovieList, CreateApiCancelationToken(cancelationToken));
+                var data = await _httpClientWrapper.GetStringAsync(_movieApiUris.GetFilmworldMovieList, CreateApiCancelationToken(cancelationToken));
 
                 return JsonConvert.DeserializeObject<MovieListDto>(data);
             }
@@ -58,7 +57,7 @@ namespace WebJetMovies.Infrastructure.Services
             {
                 var movieDetailUri = string.Format(_movieApiUris.GetFilmworldMovieDetail, movieId);
 
-                var data = await _httpClient.GetStringAsync(movieDetailUri, CreateApiCancelationToken(cancelationToken));
+                var data = await _httpClientWrapper.GetStringAsync(movieDetailUri, CreateApiCancelationToken(cancelationToken));
 
                 return JsonConvert.DeserializeObject<Movie>(data);
             }
@@ -75,7 +74,7 @@ namespace WebJetMovies.Infrastructure.Services
 
             try
             {
-                var data = await _httpClient.GetStringAsync(_movieApiUris.GetCinemaworldMovieList, CreateApiCancelationToken(cancelationToken));
+                var data = await _httpClientWrapper.GetStringAsync(_movieApiUris.GetCinemaworldMovieList, CreateApiCancelationToken(cancelationToken));
 
                 return JsonConvert.DeserializeObject<MovieListDto>(data);
             }
@@ -94,7 +93,7 @@ namespace WebJetMovies.Infrastructure.Services
             {
                 var movieDetailUri = string.Format(_movieApiUris.GetCinemaworldMovieDetail, movieId);
 
-                var data = await _httpClient.GetStringAsync(movieDetailUri, CreateApiCancelationToken(cancelationToken));
+                var data = await _httpClientWrapper.GetStringAsync(movieDetailUri, CreateApiCancelationToken(cancelationToken));
 
                 return JsonConvert.DeserializeObject<Movie>(data);
             }

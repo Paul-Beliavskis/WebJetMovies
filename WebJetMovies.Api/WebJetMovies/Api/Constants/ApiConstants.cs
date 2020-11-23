@@ -21,6 +21,8 @@
             internal const string MovieApiUris = "Api:MovieApiUris";
 
             internal const string ApiRequestDetails = "Api:ApiRequestDetails";
+
+            internal const string MaxDurationOfClientRequest = "Api:ApiRequestDetails:MaxDurationOfClientRequest";
         }
     }
 }

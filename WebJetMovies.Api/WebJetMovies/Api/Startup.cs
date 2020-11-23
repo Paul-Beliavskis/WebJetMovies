@@ -57,7 +57,7 @@ namespace WebJetMovies.Api
                 .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddHttpClient<IMovieApiClient, MovieApiClient>((client) =>
+            services.AddHttpClient<IHttpClientWrapper, HttpClientWrapper>((client) =>
             {
                 //Token that is retrieved from environment variables (not included in GitHub
                 //and not sent to the UI for security. Instead app service has it set as an env variable)
@@ -66,10 +66,12 @@ namespace WebJetMovies.Api
                 Uri.TryCreate(Configuration[ApiConstants.ConfigurationNames.ApiServerAddress], UriKind.Absolute, out Uri baseAddress);
 
                 client.BaseAddress = baseAddress;
-                client.Timeout = TimeSpan.FromSeconds(5);
+                client.Timeout = TimeSpan.FromSeconds(double.Parse(Configuration[ApiConstants.ConfigurationNames.MaxDurationOfClientRequest]));
 
             }).SetHandlerLifetime(TimeSpan.FromMinutes(5))
                     .AddPolicyHandler(RetryPolicy.GetRetryPolicy());
+
+            services.AddScoped<IMovieApiClient, MovieApiClient>();
 
             services.Configure<MovieApiUris>(Configuration.GetSection(ApiConstants.ConfigurationNames.MovieApiUris));
             services.Configure<ApiRequestDetails>(Configuration.GetSection(ApiConstants.ConfigurationNames.ApiRequestDetails));
@@ -102,9 +104,11 @@ namespace WebJetMovies.Api
             //This will ensure that if no route is found we need to return the UI page
             app.UseRouteHandlerMiddleware();
 
+            var wwwrootDirectory = env.IsDevelopment() ? "Api/wwwroot" : "wwwroot";
+
             app.UseStaticFiles(new StaticFileOptions()
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Api/wwwroot"))
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), wwwrootDirectory))
             });
 
             app.UseHttpsRedirection();
